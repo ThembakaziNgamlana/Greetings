@@ -13,6 +13,12 @@ body{
     text-size-adjust: 40px;
 }
 
+ .numberString{
+  padding-right: 40px;
+  background-color: palevioletred;
+  height: 40px;
+  width: 60px;
+} 
 
 .main_heading{
   text-align: center;  
@@ -45,16 +51,13 @@ body{
     padding-top: 40px;
 }
 
-.buttonOne{
-    text-align: center;
-    padding-top: 40px;
+.button{
+  text-align: center;
+  padding-top: 40px;
 }
 
-.buttonTwo{
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
+
+
 
 
 @media(min-width:960px){
