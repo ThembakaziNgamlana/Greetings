@@ -1,87 +1,103 @@
-
 function createGreetingApp() {
   const userName = document.querySelector(".textString");
   const languageType = document.querySelectorAll(".lang");
   const greetBtn = document.querySelector(".radiolanguage");
   const myReset = document.querySelector(".refreshBtn");
   const message = document.querySelector(".message");
-  let count = 0;
-  let peopleNamesCount = 0;
+  const peopleNamesCounter = document.querySelector(".peopleNamesCounter");
+  const counterEl =  document.querySelector(".counter")
+  let peopleNamesCount = getNameCount(); 
+  let greetCount = 0;
 
   function incrementPeopleNamesCount() {
-    peopleNamesCount++;
-    localStorage['namesCount'] = peopleNamesCount;
-    if (localStorage['namesCount']) {
-      peopleNamesCount = Number(localStorage['namesCount']);
-    }
+    greetCount++;
+    localStorage.setItem('namesCount', greetCount);
+    const greetCountDisplay = document.querySelector('.greetCount');
+    const displayBox = document.querySelector('.numberString');
+    greetCountDisplay.textContent = greetCount;
+    displayBox.value = greetCount
   }
 
-  function nameCount(username, language) {
-    let totalName = username.toLowerCase().split(',');
-    let greeting = "";
-    for (let i = 0; i < totalName.length; i++) {
-      if (totalName[i].trim().toLowerCase() === "name") {
-        count++;
-      }
-      if (language[i] === "english") {
-        greeting += "Hello " + totalName[i];
-      }
-      if (language[i] === "isixhosa") {
-        greeting += "Molo " + totalName[i];
-      }
-      if (language[i] === "french") {
-        greeting += "Bonjour " + totalName[i];
-      }
+  function resetPeopleNamesCount() {
+    greetCount = '';
+    localStorage.removeItem('namesCount');
+    const greetCountDisplay = document.querySelector('.greetCount')
+    const displayBox = document.querySelector('.numberString');
+    greetCountDisplay.textContent = greetCount;
+    displayBox.value = '';
+  }
+
+  function getNameCount() {
+    const namesCount = localStorage.getItem('namesCount');
+    return namesCount;
+    
+  }
+
+  function getGreetingMessage(selectedLanguage, selectedName) {
+    let greeting = '';
+    if (selectedLanguage === 'english') {
+      greeting = `Hello, ${selectedName}`;
+    } else if (selectedLanguage === 'isixhosa') {
+      greeting = `Molo, ${selectedName}`;
+    } else if (selectedLanguage === 'french') {
+      greeting = `Bonjour, ${selectedName}`;
     }
     return greeting;
   }
 
   function handleGreetBtnClick() {
-    const selectedLanguage = document.querySelector('input[name="language"]:checked').value;
-    const selectedName = userName.value;
-    const totalName = selectedName.toLowerCase().split(',');
-    let message = "";
-    for (let i = 0; i < totalName.length; i++) {
-      languageType.forEach(function(language) {
-        if (language.checked) {
-          if (selectedLanguage === "english") {
-            message += "Hello " + totalName[i] + " ";
-          } else if (selectedLanguage === "isixhosa") {
-            message += "Molo " + totalName[i] + " ";
-          } else if (selectedLanguage === "french") {
-            message += "Bonjour " + totalName[i] + " ";
-          }
-        }
-      });
+    const selectedLanguage = document.querySelector('input[name="language"]:checked');
+    const selectedName = userName.value.trim();
+  
+    if (!selectedName && !selectedLanguage) {
+      message.textContent = 'Please enter a name and select a language.';
+      return;
     }
-    document.querySelector('.peopleNamesCounter').textContent = message;
+  
+    if (!selectedName) {
+      message.textContent = 'Please enter a name.';
+      return;
+    }
+  
+    if (!selectedLanguage) {
+      message.textContent = 'Please select a language.';
+      return;
+    }
+  
+    const greetingMessage = getGreetingMessage(selectedLanguage.value, selectedName);
+    const greetingDisplay = document.querySelector('.greetingMessage');
+    const validationMessage = document.querySelector('.validationMessage');
+  
+    greetingDisplay.textContent = greetingMessage;
+    validationMessage.textContent = '';
+    incrementPeopleNamesCount();
+    greetCount = getNameCount();
+    greetCountDisplay.textContent = greetCount;
+    displayBox.value = greetCount;
   }
 
   function handleMyResetClick() {
-    count = 0;
-    peopleNamesCount = 0;
-    localStorage.removeItem('namesCount');
-    document.querySelector('.peopleNamesCounter').textContent = "";
+    resetPeopleNamesCount();
     userName.value = "";
-    languageType.forEach(function(language) {
+    languageType.forEach(function (language) {
       language.checked = false;
     });
     message.textContent = "";
   }
 
   return {
-    incrementPeopleNamesCount,
-    nameCount,
     handleGreetBtnClick,
-    handleMyResetClick
+    handleMyResetClick,
   };
 }
 
-// The instannce of the of the fuction
 const myGreetingApp = createGreetingApp();
 
-//  call a method :
-myGreetingApp.incrementPeopleNamesCount();
+const greetBtn = document.querySelector('.radiolanguage');
+greetBtn.addEventListener('click', myGreetingApp.handleGreetBtnClick);
+
+const resetBtn = document.querySelector('.refreshBtn');
+resetBtn.addEventListener('click', myGreetingApp.handleMyResetClick);
 
 
 
@@ -117,76 +133,3 @@ myGreetingApp.incrementPeopleNamesCount();
 
 
 
-
-
-
-
-
-// var userName = document.querySelector(".textString");
-// var languageType = document.querySelectorAll(".lang");
-// var greetBtn = document.querySelector(".radiolanguage");
-// var myReset = document.querySelector(".refreshBtn");
-// var message = document.querySelector(".message");
-
-// var count = 0;
-
-// var peopleNamesCount = 0;
-// var btn = document.querySelector('button');
-// btn.addEventListener('click', function() {
-//   peopleNamesCount++;
-//   localStorage['namesCount'] = peopleNamesCount;
-//   if (localStorage['namesCount']) {
-//     peopleNamesCount = Number(localStorage['namesCount']);
-//   }
-// });
-
-// function nameCount(username, language) {
-//   let totalName = username.toLowerCase().split(',');
-//   let greeting = "";
-//   for (let i = 0; i < totalName.length; i++) {
-//     if (totalName[i].trim().toLowerCase() === "name") {
-//       count++;
-//     }
-//     if (language[i] === "english") {
-//       greeting += "Hello " + totalName[i];
-//     }
-//     if (language[i] === "isixhosa") {
-//       greeting += "Molo " + totalName[i];
-//     }
-//     if (language[i] === "french") {
-//       greeting += "Bonjour " + totalName[i];
-//     }
-//   }
-//   return greeting;
-// }
-// greetBtn.addEventListener('click', function() {
-//   const selectedLanguage = document.querySelector('input[name="language"]:checked').value;
-//   const selectedName = userName.value;
-//   const totalName = selectedName.toLowerCase().split(',');
-//   let message = "";
-//   for (let i = 0; i < totalName.length; i++) {
-//     languageType.forEach(function(language) {
-//       if (language.checked) {
-//         if (selectedLanguage === "english") {
-//           message += "Hello " + totalName[i] + " ";
-//         } else if (selectedLanguage === "isixhosa") {
-//           message += "Molo " + totalName[i] + " ";
-//         } else if (selectedLanguage === "french") {
-//           message += "Bonjour " + totalName[i] + " ";
-//         }
-//       }
-//     });
-//   }
-//   document.querySelector('.peopleNamesCounter').textContent = message;
-// });
-// myReset.addEventListener('click', function() {
-//   count = 0;
-//   peopleNamesCount = 0;
-//   localStorage.removeItem('namesCount');
-//   document.querySelector('.peopleNamesCounter').textContent = "";
-//   userName.value = "";
-//   languageType.forEach(function(language) {
-//     language.checked = false;
-//   });
-//   message.textContent = "";
-// });

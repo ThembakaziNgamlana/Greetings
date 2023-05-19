@@ -19,48 +19,47 @@
     <div class="">
       <div class="intro">
         <label for="name">Name:</label>
-       <input type="text" class="textString" placeholder="Enter a name">
+        <input type="text" id="userName" class="textString" placeholder="Enter a name">
        <input type=displayBox class="numberString" >
       <br>
       </div>
-      <div class="enter">
+
+    </div>
+   
+
+    <div class="enter">
+      <input type="radio" name="language" class="lang" id="english" value="english">
         <label for="english">English</label>
-        <input type="radio" name="language" class="lang" id="english" value="english">
-        <label for="isixhosa">IsiXhosa</label>
+       
         <input type="radio" name="language" class="lang" id="isixhosa" value="isixhosa">
-        <label for="french">French</label>
+        <label for="isixhosa">IsiXhosa</label>
+        
         <input type="radio" name="language" class="lang" id="french" value="french">
+        <label for="french">French</label>
+       
         <br>
-        
-        </div>
+    </div>    
 
-        
-
-<div class="button">
-
-  <div class="buttonOne">
-    <button class="radiolanguage">Greet</button>
-  </div>
+        <div class="button">
+          <button class="radiolanguage" onclick="handleGreetBtnClick()">Greet</button>
+           <button class="refreshBtn" onclick="handleResetBtnClick()">Reset</button>
+         </div>
  
-  <div class="buttonTwo">
-    <button class="refreshBtn">Reset</button>
-    <br>
-  </div>
-</div>
+
 
       <div class="peopleNamesCounter">
-      <span class="greetCount"></span>
+       <span class="greetCount"></span> 
       </div>
       
-      <div class="peopleNamesCounter"></div>
-      <div class="message"></div>
+      <div class="peopleNamesCounter"></div> 
+      <div class="message"></div> 
     </div>
     
     
 
 
 
-  <script src="greet.js" charset="utf-8"></script>
+  <script src="greet-factory-function.js" charset="utf-8"></script>
   <!-- <script src="greet-factory-function.js" charset="utf-8"></script>  -->
   </body>
 </html>
