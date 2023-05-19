@@ -7,28 +7,30 @@ function createGreetingApp() {
   const peopleNamesCounter = document.querySelector(".peopleNamesCounter");
   const counterEl =  document.querySelector(".counter")
   let peopleNamesCount = getNameCount(); 
+  let greetCount = 0;
 
   function incrementPeopleNamesCount() {
-    peopleNamesCount++;
-    localStorage.setItem('namesCount', peopleNamesCount);
+    greetCount++;
+    localStorage.setItem('namesCount', greetCount);
     const greetCountDisplay = document.querySelector('.greetCount');
-    greetCountDisplay.textContent = peopleNamesCount;
+    const displayBox = document.querySelector('.numberString');
+    greetCountDisplay.textContent = greetCount;
+    displayBox.value = greetCount
   }
 
   function resetPeopleNamesCount() {
-    peopleNamesCount = '';
+    greetCount = 0;
     localStorage.removeItem('namesCount');
-    const greetCountDisplay = document.querySelector('.greetCount');
-    greetCountDisplay.textContent = peopleNamesCount;
+    const greetCountDisplay = document.querySelector('.greetCount')
+    const displayBox = document.querySelector('.numberString');
+    greetCountDisplay.textContent = greetCount;
+    displayBox.value = '';
   }
 
   function getNameCount() {
     const namesCount = localStorage.getItem('namesCount');
-    if (namesCount) {
-     
-      return namesCount++;
-    }
-    return 0;
+    return namesCount;
+    
   }
 
   function getGreetingMessage(selectedLanguage, selectedName) {
@@ -55,12 +57,26 @@ function createGreetingApp() {
       return;
     }
     const greetingMessage = getGreetingMessage(selectedLanguage.value, selectedName);
-    message.textContent = greetingMessage;
-    incrementPeopleNamesCount();
-    let namesCount = getNameCount();
+    const greetingDisplay = document.querySelector('.greetingMessage');
+    const validationMessage = document.querySelector('.validationMessage');
     
-    counterEl.innerHTML = namesCount
-    peopleNamesCounter.textContent = namesCount;
+    if (!selectedName) {
+      validationMessage.textContent = 'Please enter a name.';
+      greetingDisplay.textContent = '';
+      return;
+    }
+    if (!selectedLanguage) {
+      validationMessage.textContent = 'Please select a language.';
+      greetingDisplay.textContent = '';
+      return;
+    }
+    
+    greetingDisplay.textContent = greetingMessage;
+    validationMessage.textContent = '';
+    incrementPeopleNamesCount();
+    greetCount = getNameCount();
+    greetCountDisplay.textContent = greetCount;
+    displayBox.value = greetCount;
   }
 
   function handleMyResetClick() {

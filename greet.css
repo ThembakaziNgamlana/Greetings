@@ -3,14 +3,20 @@ label {
     width: 80px;
     text-align: right;
     margin-right: 10px;
+    padding: 5px;
+    border: 1px solid palevioletred;
   }
   input[type="text"] {
     display: inline-block;
     width: 200px;
+    padding: 5px;
   }
 body{
     background-color: palevioletred;
     text-size-adjust: 40px;
+}
+.message{
+  text-align: center;
 }
 
  .numberString{
@@ -21,10 +27,14 @@ body{
 } 
 
 .main_heading{
-  text-align: center;  
+   text-align: center;
   /* padding-right: 200px; */
-  padding-bottom: 40px;
-  padding-top: 60px;
+  /*display: inline-block;*/
+  /*padding: 10px;*/
+  background-color: gray;
+  border: 1px solid grey;
+ /* margin: 0 auto;*/
+  
 }
 .intro{
   padding-bottom: 40px;
