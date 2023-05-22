@@ -12,54 +12,54 @@
       <h1>Greeting</h1>
     </div>
     
-    <div class ="message">
+    <div class="message">
       <p class="greetingMessage"></p>
       <p class="validationMessage"></p>
     </div>
-    <div class="">
-      <div class="intro">
-        <label for="name">Name:</label>
-        <input type="text" id="userName" class="textString" placeholder="Enter a name">
-       <input type=displayBox class="numberString" >
+    
+    <div class="intro">
+      <label for="name">Name:</label>
+      <input type="text" id="userName" class="textString" placeholder="Enter a name">
+      <input type="text" class="numberString">
       <br>
-      </div>
-
     </div>
-   
-
+    
     <div class="enter">
+      <label for="english">English</label>
       <input type="radio" name="language" class="lang" id="english" value="english">
-        <label for="english">English</label>
-       
-        <input type="radio" name="language" class="lang" id="isixhosa" value="isixhosa">
-        <label for="isixhosa">IsiXhosa</label>
-        
-        <input type="radio" name="language" class="lang" id="french" value="french">
-        <label for="french">French</label>
-       
-        <br>
-    </div>    
+    
+      <label for="isixhosa">IsiXhosa</label>
+      <input type="radio" name="language" class="lang" id="isixhosa" value="isixhosa">
+    
+      <label for="french">French</label>
+      <input type="radio" name="language" class="lang" id="french" value="french">
+      <br>
+    </div> 
 
-        <div class="button">
-          <button class="radiolanguage" onclick="handleGreetBtnClick()">Greet</button>
-           <button class="refreshBtn" onclick="handleResetBtnClick()">Reset</button>
-         </div>
- 
-
-
-      <div class="peopleNamesCounter">
-       <span class="greetCount"></span> 
-      </div>
-      
-      <div class="peopleNamesCounter"></div> 
-      <div class="message"></div> 
+    <span class="greetCount"></span>
+    
+    <div class="button">
+      <button class="radiolanguage" onclick="myGreetingApp.handleGreetBtnClick()">Greet</button>
+      <button class="refreshBtn" onclick="myGreetingApp.handleMyResetClick()">Reset</button>
     </div>
-    
-    
 
+    <script src="js/greet-factory-function.js" charset="utf-8"></script>
+    <script>
+      const myGreetingApp = createGreetingApp();
 
+      function handleGreetBtnClick() {
+        myGreetingApp.handleGreetBtnClick();
+      }
 
-  <script src="greet-factory-function.js" charset="utf-8"></script>
-  <!-- <script src="greet-factory-function.js" charset="utf-8"></script>  -->
+      function handleMyResetClick() {
+        myGreetingApp.handleMyResetClick();
+      }
+
+      const greetBtn = document.querySelector('.radiolanguage');
+      greetBtn.addEventListener('click', handleGreetBtnClick);
+
+      const resetBtn = document.querySelector('.refreshBtn');
+      resetBtn.addEventListener('click', handleMyResetClick);
+    </script>
   </body>
 </html>

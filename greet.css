@@ -49,6 +49,13 @@ body{
   padding-top: 40px;
   text-align: center;
 }
+.validationMessage{
+  color: aqua;
+}
+
+.message{
+  color:red;
+}
 
 .my_greetings{
     text-align:center;
