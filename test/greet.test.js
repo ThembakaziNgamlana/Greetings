@@ -2,11 +2,11 @@ describe(' Testing the Greeting App', function() {
     it('should return a greeting message in English', function() {
         let  greetingApp = createGreetingApp();
         const selectedLanguage = { value: 'english' };
-        const userName = 'Noxolo';
+        const userName = 'Akhona';
   
       const result = greetingApp.handleGreetBtnClick(selectedLanguage, userName);
   
-      assert.strictEqual(result.greetingMessage, 'Hello, Noxolo');
+      assert.strictEqual(result.greetingMessage, 'Hello, Akhona');
     });
 
 
