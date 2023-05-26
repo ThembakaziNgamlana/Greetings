@@ -3,7 +3,7 @@ function createGreetingApp() {
   var greetedNames = [];
   var selectedLanguage = 'english';
   var userName = 'John';
-
+// create the greet function
   function handleGreetBtnClick(selectedLanguage, userName) {
     var result = {
               greetingMessage: '',
