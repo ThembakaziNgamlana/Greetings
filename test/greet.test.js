@@ -62,7 +62,7 @@ describe(' Testing the Greeting App', function() {
   });
   it('should reset the greeted names and greet count', function() {
     let greetingApp = createGreetingApp();
-    greetingApp.handleGreetBtnClick({ value: 'english' }, 'John');
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'Soso');
     greetingApp.handleMyResetClick();
   
     assert.deepStrictEqual(greetingApp.getGreetedNames(), []);
