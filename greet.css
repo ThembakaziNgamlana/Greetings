@@ -36,16 +36,14 @@ body{
  /* margin: 0 auto;*/
   
 }
-
 .intro{
- text-align: center;
+  padding-bottom: 40px;
+  text-align: center;
 }
 
 .enter{
   text-align: center;
-  padding-top: 60px;
 }
-
 
 .lang{
   padding-top: 40px;

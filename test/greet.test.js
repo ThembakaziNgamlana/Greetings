@@ -71,9 +71,9 @@ describe(' Testing the Greeting App', function() {
   
   it('should not increment greetCount if the user has already been greeted', function() {
     let greetingApp = createGreetingApp();
-    greetingApp.handleGreetBtnClick({ value: 'english' }, 'John');
-    greetingApp.handleGreetBtnClick({ value: 'english' }, 'John');
-    greetingApp.handleGreetBtnClick({ value: 'english' }, 'John');
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'Azola');
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'Azola');
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'Azola');
   
     assert.strictEqual(greetingApp.getGreetCount(), 1);
   });
