@@ -1,41 +1,21 @@
-function createGreetingApp() {
-  var greetCount = 0;
+function createGreetingApp(storageCount) {
+  var greetCount = storageCount || 0;
   var greetedNames = [];
-  var selectedLanguage = 'english';
-  var userName = 'John';
-// create the greet function
+  var result = {
+    greetingMessage: "",
+    validationMessage: "",
+  };
+  // create the greet function
   function handleGreetBtnClick(selectedLanguage, userName) {
-    var result = {
-              greetingMessage: '',
-              validationMessage: ''
-            };
-        
-            if (userName === '' && selectedLanguage === null) {
-              result.validationMessage = 'Please enter your name and select a language.';
-            } else if (userName === '') {
-              result.validationMessage = 'Please enter a name.';
-            } else if (selectedLanguage === null) {
-              result.validationMessage = 'Please select a language.';
-            }
-        
-            if (userName && selectedLanguage) {
-              if (!greetedNames.includes(userName)) {
-                greetedNames.push(userName);
-                greetCount++;
-              }
-        
-              if (selectedLanguage.value === 'english') {
-                result.greetingMessage = 'Hello, ' + userName;
-              } else if (selectedLanguage.value === 'isixhosa') {
-                result.greetingMessage = 'Molo, ' + userName;
-              } else if (selectedLanguage.value === 'french') {
-                result.greetingMessage = 'Bonjour, ' + userName;
-              }
-            }
-        
-            return result;
-          }
-   function handleMyResetClick() {
+    // INCREMENT COUNTER
+    if (userName && selectedLanguage) {
+      if (!greetedNames.includes(userName)) {
+        greetedNames.push(userName);
+        greetCount++;
+      }
+    }
+  }
+  function handleMyResetClick() {
     greetedNames = [];
     greetCount = 0;
   }
@@ -47,88 +27,33 @@ function createGreetingApp() {
   function getGreetCount() {
     return greetCount;
   }
-
+  function message(selectedLanguage, userName) {
+    // SHOW ERROR MESSAGES
+    if (userName === "" && selectedLanguage === null) {
+      result.validationMessage =
+        "Please enter your name and select a language.";
+    } else if (userName === "") {
+      result.validationMessage = "Please enter a name.";
+    } else if (selectedLanguage === null) {
+      result.validationMessage = "Please select a language.";
+    }
+    // SHOW GREETING MESSAGES
+    if (userName !== "" && selectedLanguage !== null) {
+      if (selectedLanguage.value === "english") {
+        result.greetingMessage = "Hello, " + userName;
+      } else if (selectedLanguage.value === "isixhosa") {
+        result.greetingMessage = "Molo, " + userName;
+      } else if (selectedLanguage.value === "french") {
+        result.greetingMessage = "Bonjour, " + userName;
+      }
+    }
+    return result;
+  }
   return {
     handleGreetBtnClick,
     handleMyResetClick,
     getGreetedNames,
-    getGreetCount
+    getGreetCount,
+    message,
   };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

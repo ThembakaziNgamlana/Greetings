@@ -1,85 +1,91 @@
 label {
-    display: inline-block;
-    width: 80px;
-    text-align: right;
-    margin-right: 10px;
-    padding: 5px;
-    border: 1px solid palevioletred;
-  }
-  input[type="text"] {
-    display: inline-block;
-    width: 200px;
-    padding: 5px;
-  }
-body{
-    background-color: palevioletred;
-    text-size-adjust: 40px;
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid palevioletred;
 }
-.message{
+input[type="text"] {
+  display: inline-block;
+  width: 200px;
+  padding: 5px;
+}
+body {
+  background-color: palevioletred;
+  text-size-adjust: 40px;
+}
+.message {
   text-align: center;
 }
 
- .greetCount{
+.greetCount {
   padding-right: 40px;
   background-color: palevioletred;
   height: 40px;
   width: 60px;
-} 
+}
 
-.main_heading{
-   text-align: center;
+.main_heading {
+  text-align: center;
   /* padding-right: 200px; */
   /*display: inline-block;*/
   /*padding: 10px;*/
   background-color: gray;
   border: 1px solid grey;
- /* margin: 0 auto;*/
-  
+  /* margin: 0 auto;*/
 }
-.intro{
+.intro {
   padding-bottom: 40px;
   text-align: center;
 }
 
-.enter{
+.enter {
   text-align: center;
 }
 
-.lang{
+.lang {
   padding-top: 40px;
   text-align: center;
 }
-.validationMessage{
-  color: aqua;
-}
-
-.message{
+.validationMessage {
   color:red;
 }
 
-.my_greetings{
-    text-align:center;
-    padding-bottom: 100px;
-    padding-top: 40px;
+.message {
+  color: blue;
 }
 
-.radioBtn{
-    text-align: center;
-    padding-top: 40px;
+.my_greetings {
+  text-align: center;
+  padding-bottom: 100px;
+  padding-top: 40px;
 }
 
-.button{
+.radioBtn {
   text-align: center;
   padding-top: 40px;
 }
 
+.button {
+  text-align: center;
+  padding-top: 40px;
+}
 
-
-
-
-@media(min-width:960px){
-  .greetings{
-       display:flex;
-   }
-} 
+@media (min-width: 960px) {
+  .greetings {
+    display: flex;
+  }
+}
+.greet-count {
+  font-size: 32px;
+  font-weight: bold;
+  background-color: rgb(177, 51, 72);
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 

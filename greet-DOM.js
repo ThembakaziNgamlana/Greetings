@@ -1,72 +1,36 @@
-var selectedLanguage = document.querySelector('input[name="language"]:checked');
-var userNameInput = document.getElementById('userName');
-var greetingMessage = document.querySelector('.greetingMessage');
-var validationMessage = document.querySelector('.validationMessage');
-var greetBtn = document.querySelector('.radiolanguage');
-var resetBtn = document.querySelector('.refreshBtn');
-var greetCountElement = document.querySelector('.greetCount');
-var greetCount = 0;
-var greetedNames = [];
+var userNameInput = document.getElementById("userName");
+var greetingMessage = document.querySelector(".greetingMessage");
+var validationMessage = document.querySelector(".validationMessage");
+var greetBtn = document.querySelector(".radiolanguage");
+var resetBtn = document.querySelector(".refreshBtn");
+var greetCountElement = document.querySelector(".greet-count");
+var selectedLanguage;
+var storageCount = JSON.parse(localStorage.getItem("greetCount")) || 0;
+var greetingApp = createGreetingApp(storageCount);
+greetCountElement.innerHTML = storageCount;
 
-// Load greet count from local storage
-if (localStorage.getItem('greetCount')) {
-  greetCount = parseInt(localStorage.getItem('greetCount'));
-  greetCountElement.value = greetCount;
-}
-
-// Load greeted names from local storage
-if (localStorage.getItem('greetedNames')) {
-  greetedNames = JSON.parse(localStorage.getItem('greetedNames'));
-}
-
-
-greetBtn.addEventListener('click', handleGreetBtnClick);
-resetBtn.addEventListener('click', handleMyResetClick);
-
-function handleGreetBtnClick() {
+function greetBtnFunction() {
   selectedLanguage = document.querySelector('input[name="language"]:checked');
-  var userName = userNameInput.value.trim();
-
-  if (userName === '' && selectedLanguage === null) {
-    validationMessage.innerHTML = 'Please enter your name and select a language.';
-  } else if (userName === '') {
-    validationMessage.innerHTML = 'Please enter a name.';
-  } else if (selectedLanguage === null) {
-    validationMessage.innerHTML = 'Please select a language.';
-  }
-  
-
-  // Clear validation message after 2 seconds
-  setTimeout(function() {
-    validationMessage.innerHTML = '';
-  }, 2000);
-
-  if (userName !== '' && selectedLanguage !== null) {
-    if (!greetedNames.includes(userName)) {
-      greetedNames.push(userName);
-      greetCount++;
-      greetCountElement.value = greetCount;
-
-      // Save greeted names to local storage
-      localStorage.setItem('greetedNames', JSON.stringify(greetedNames));
-
-      // Save greet count to local storage
-      localStorage.setItem('greetCount', greetCount.toString());
-    }
-
-    if (selectedLanguage.value === 'english') {
-      greetingMessage.innerHTML = 'Hello, ' + userName;
-    } else if (selectedLanguage.value === 'isixhosa') {
-      greetingMessage.innerHTML = 'Molo, ' + userName;
-    } else if (selectedLanguage.value === 'french') {
-      greetingMessage.innerHTML = 'Bonjour, ' + userName;
-    }
+  var msg;
+  if (!selectedLanguage || userNameInput.value === "") {
+    msg = greetingApp.message(selectedLanguage, userName.value);
+    validationMessage.innerHTML = msg.validationMessage;
+    // Clear validation message after 2 seconds
+    setTimeout(function () {
+      validationMessage.innerHTML = "";
+    }, 2000);
+  } else {
+    greetingApp.handleGreetBtnClick(selectedLanguage.value, userName.value);
+    greetCountElement.innerHTML = greetingApp.getGreetCount();
+    msg = greetingApp.message(selectedLanguage, userName.value);
+    greetingMessage.innerHTML = msg.greetingMessage;
+    localStorage.setItem("greetCount", greetingApp.getGreetCount());
   }
 }
 
 function handleMyResetClick() {
   // Reset the user's name
-  userNameInput.value = '';
+  userNameInput.value = "";
 
   // Reset the selected language
   selectedLanguage = document.querySelector('input[name="language"]:checked');
@@ -75,141 +39,19 @@ function handleMyResetClick() {
   }
 
   // Reset the greeting message
-  greetingMessage.innerHTML = '';
+  greetingMessage.innerHTML = "";
 
   // Reset the validation message
-  validationMessage.innerHTML = '';
+  validationMessage.innerHTML = "";
 
   // Reset greet count and greeted names
-  greetCount = '';
+  greetCount = "";
   greetedNames = [];
-  greetCountElement.value = greetCount;
+  greetCountElement.innerHTML = 0;
 
   // Clear local storage
-  localStorage.removeItem('greetCount');
-  localStorage.removeItem('greetedNames');
+  localStorage.removeItem("greetCount");
+  localStorage.removeItem("greetedNames");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var selectedLanguage = document.querySelector('input[name="language"]:checked');
-// var userNameInput = document.getElementById('userName');
-// var greetingMessage = document.querySelector('.greetingMessage');
-// var validationMessage = document.querySelector('.validationMessage');
-// var greetBtn = document.querySelector('.radiolanguage');
-// var resetBtn = document.querySelector('.refreshBtn');
-
-// greetBtn.addEventListener('click', handleGreetBtnClick);
-// resetBtn.addEventListener('click', handleMyResetClick);
-
-// function handleGreetBtnClick() {
-//   selectedLanguage = document.querySelector('input[name="language"]:checked');
-//   var userName = userNameInput.value.trim();
-
-//   if (userName === '' && selectedLanguage === null) {
-//     validationMessage.innerHTML = 'Please enter your name and select a language.';
-//   } else if (userName === '') {
-//     validationMessage.innerHTML = 'Please enter a name.';
-//   } else if (selectedLanguage === null) {
-//     validationMessage.innerHTML = 'Please select a language.';
-//   }
-
-//   if (selectedLanguage && selectedLanguage.value === 'english') {
-//     greetingMessage.innerHTML = 'Hello, ' + userName;
-//   } else if (selectedLanguage && selectedLanguage.value === 'isixhosa') {
-//     greetingMessage.innerHTML = 'Molo, ' + userName;
-//   } else if (selectedLanguage && selectedLanguage.value === 'french') {
-//     greetingMessage.innerHTML = 'Bonjour, ' + userName;
-//   }
-// }
-
-// function handleMyResetClick() {
-//   // Reset the user's name
-//   userNameInput.value = '';
-
-//   // Reset the selected language
-//   selectedLanguage = document.querySelector('input[name="language"]:checked');
-//   if (selectedLanguage) {
-//     selectedLanguage.checked = false;
-//   }
-
-//   // Reset the greeting message
-//   greetingMessage.innerHTML = '';
-
-//   // Reset the validation message
-//   validationMessage.innerHTML = '';
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+greetBtn.addEventListener("click", greetBtnFunction);
+resetBtn.addEventListener("click", handleMyResetClick);

@@ -1,54 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Greeting</title>
-    <link rel="stylesheet" href="greet.css">
-
+    <link rel="stylesheet" href="greet.css" />
   </head>
   <body>
     <div class="main_heading">
       <h1>Greeting</h1>
     </div>
-    
+
     <div class="message">
       <p class="greetingMessage"></p>
       <p class="validationMessage"></p>
     </div>
-    
+
     <div class="intro">
       <label for="name">Name:</label>
-      <input type="text" id="userName" class="textString" placeholder="Enter a name">
-      <br>
+      <input
+        type="text"
+        id="userName"
+        class="textString"
+        placeholder="Enter a name"
+      />
+      <br />
     </div>
-    
+
     <div class="enter">
-     
-      <input type="radio" name="language" class="lang" id="english" value="english">
+      <input
+        type="radio"
+        name="language"
+        class="lang"
+        id="english"
+        value="english"
+      />
       <label for="english">English</label>
 
-    
-      <input type="radio" name="language" class="lang" id="isixhosa" value="isixhosa">
+      <input
+        type="radio"
+        name="language"
+        class="lang"
+        id="isixhosa"
+        value="isixhosa"
+      />
       <label for="isixhosa">IsiXhosa</label>
 
-     
-      <input type="radio" name="language" class="lang" id="french" value="french">
+      <input
+        type="radio"
+        name="language"
+        class="lang"
+        id="french"
+        value="french"
+      />
       <label for="french">French</label>
 
-    <!-- <br> -->
-    </div> 
-
-    <input type="number" class="greetCount"></span>
-    
-    <div class="button">
-        <button class="button-primary radiolanguage" type="button" name="button" >Greet</button>
-        <button class="button-primary refreshBtn" type="button" name="button" >Reset</button>
+      <!-- <br> -->
     </div>
 
-    <script src="./greet-factory-Function.js" charset="utf-8"></script> 
+    <div><p class="greet-count">0</p></div>
+
+    <div class="button">
+      <button class="button-primary radiolanguage" type="button" name="button">
+        Greet
+      </button>
+      <button class="button-primary refreshBtn" type="button" name="button">
+        Reset
+      </button>
+    </div>
+
+    <script src="./greet-factory-Function.js" charset="utf-8"></script>
     <script src="./greet-DOM.js" charset="utf-8"></script>
-   
   </body>
 </html>

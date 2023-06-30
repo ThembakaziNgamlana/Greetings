@@ -78,7 +78,15 @@ describe(' Testing the Greeting App', function() {
     assert.strictEqual(greetingApp.getGreetCount(), 1);
   });
 
+  it('should increment if the many names are greeted', function() {
+    let greetingApp = createGreetingApp();
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'Azola');
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'lolo');
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'Wendy');
+    greetingApp.handleGreetBtnClick({ value: 'english' }, 'Wendy');
 
+    assert.strictEqual(greetingApp.getGreetCount(), 3);
+  });
 
 
 });
