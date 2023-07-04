@@ -9,6 +9,7 @@ var storageCount = JSON.parse(localStorage.getItem("greetCount")) || 0;
 var greetingApp = createGreetingApp(storageCount);
 greetCountElement.innerHTML = storageCount;
 
+//the greet button function 
 function greetBtnFunction() {
   selectedLanguage = document.querySelector('input[name="language"]:checked');
   var msg;

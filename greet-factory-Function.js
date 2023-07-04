@@ -49,7 +49,7 @@ function createGreetingApp(storageCount) {
 
     return result;
   }
-
+// return the object
   return {
     handleGreetBtnClick,
     handleMyResetClick,
