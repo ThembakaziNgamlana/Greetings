@@ -13,45 +13,41 @@ function greetBtnFunction() {
   selectedLanguage = document.querySelector('input[name="language"]:checked');
   var msg;
   if (!selectedLanguage || userNameInput.value === "") {
-    msg = greetingApp.message(selectedLanguage, userName.value);
+    msg = greetingApp.message(selectedLanguage, userNameInput.value);
     validationMessage.innerHTML = msg.validationMessage;
     // Clear validation message after 2 seconds
     setTimeout(function () {
       validationMessage.innerHTML = "";
     }, 2000);
   } else {
-    greetingApp.handleGreetBtnClick(selectedLanguage.value, userName.value);
+    greetingApp.handleGreetBtnClick(selectedLanguage.value, userNameInput.value);
     greetCountElement.innerHTML = greetingApp.getGreetCount();
-    msg = greetingApp.message(selectedLanguage, userName.value);
+    msg = greetingApp.message(selectedLanguage, userNameInput.value);
     greetingMessage.innerHTML = msg.greetingMessage;
     localStorage.setItem("greetCount", greetingApp.getGreetCount());
   }
 }
 
 function handleMyResetClick() {
-  // Reset the user's name
   userNameInput.value = "";
 
-  // Reset the selected language
   selectedLanguage = document.querySelector('input[name="language"]:checked');
   if (selectedLanguage) {
     selectedLanguage.checked = false;
   }
 
-  // Reset the greeting message
   greetingMessage.innerHTML = "";
-
-  // Reset the validation message
   validationMessage.innerHTML = "";
 
-  // Reset greet count and greeted names
-  greetCount = "";
-  greetedNames = [];
-  greetCountElement.innerHTML = 0;
+  storageCount = 0;
+  greetingApp.handleMyResetClick(); // Call the factory function's reset function
 
-  // Clear local storage
+  greetCountElement.innerHTML = greetingApp.getGreetCount();
+
   localStorage.removeItem("greetCount");
   localStorage.removeItem("greetedNames");
 }
+
+
 greetBtn.addEventListener("click", greetBtnFunction);
 resetBtn.addEventListener("click", handleMyResetClick);

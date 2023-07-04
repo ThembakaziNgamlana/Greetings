@@ -1,20 +1,19 @@
+
 function createGreetingApp(storageCount) {
-  var greetCount = storageCount || 0;
+  var greetCount = 0;
   var greetedNames = [];
   var result = {
     greetingMessage: "",
     validationMessage: "",
   };
-  // create the greet function
+
   function handleGreetBtnClick(selectedLanguage, userName) {
-    // INCREMENT COUNTER
-    if (userName && selectedLanguage) {
-      if (!greetedNames.includes(userName)) {
-        greetedNames.push(userName);
-        greetCount++;
-      }
+    if (!greetedNames.includes(userName)) {
+      greetedNames.push(userName);
+      greetCount++;
     }
   }
+
   function handleMyResetClick() {
     greetedNames = [];
     greetCount = 0;
@@ -27,8 +26,8 @@ function createGreetingApp(storageCount) {
   function getGreetCount() {
     return greetCount;
   }
+
   function message(selectedLanguage, userName) {
-    // SHOW ERROR MESSAGES
     if (userName === "" && selectedLanguage === null) {
       result.validationMessage =
         "Please enter your name and select a language.";
@@ -37,7 +36,7 @@ function createGreetingApp(storageCount) {
     } else if (selectedLanguage === null) {
       result.validationMessage = "Please select a language.";
     }
-    // SHOW GREETING MESSAGES
+
     if (userName !== "" && selectedLanguage !== null) {
       if (selectedLanguage.value === "english") {
         result.greetingMessage = "Hello, " + userName;
@@ -47,8 +46,10 @@ function createGreetingApp(storageCount) {
         result.greetingMessage = "Bonjour, " + userName;
       }
     }
+
     return result;
   }
+
   return {
     handleGreetBtnClick,
     handleMyResetClick,

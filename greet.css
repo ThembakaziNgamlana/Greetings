@@ -4,7 +4,6 @@ label {
   text-align: right;
   margin-right: 10px;
   padding: 5px;
-  border: 1px solid palevioletred;
 }
 input[type="text"] {
   display: inline-block;
@@ -12,7 +11,7 @@ input[type="text"] {
   padding: 5px;
 }
 body {
-  background-color: palevioletred;
+  background-color:#52b788;
   text-size-adjust: 40px;
 }
 .message {
@@ -31,8 +30,7 @@ body {
   /* padding-right: 200px; */
   /*display: inline-block;*/
   /*padding: 10px;*/
-  background-color: gray;
-  border: 1px solid grey;
+
   /* margin: 0 auto;*/
 }
 .intro {
@@ -77,6 +75,7 @@ body {
     display: flex;
   }
 }
+
 .greet-count {
   font-size: 32px;
   font-weight: bold;
